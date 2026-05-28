@@ -1,0 +1,18 @@
+/* Badges for Item Type (Lost / Found) */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge-lost {
+    background-color: #ffe6e6;
+    color: #ff4d4d;
+}
+
+.badge-found {
+    background-color: #e6ffe6;
+    color: #00cc00;
+}   
