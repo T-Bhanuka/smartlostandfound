@@ -1,3 +1,12 @@
+<?php session_start();
+include 'includes/connection.php';
+
+$sql = "SELECT * FROM items ORDER BY item_id	 DESC LIMIT 3";
+
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,34 +25,11 @@
 
 <body>
 
-    <header class="navbar">
-
-        <div class="nav-container">
-
-            <div class="logo-section">
-
-                <span class="material-symbols-outlined logo-icon">
-                    search_check
-                </span>
-
-                <h2>Smart Lost & Found</h2>
-
-            </div>
-
-            <nav class="nav-links">
-
-                <a href="#">Home</a>
-                <a href="#">Search</a>
-
-                <a href="login.php" class="login-btn">
-                    Login
-                </a>
-                <a href="register.php" class="register-btn">
-                    Register
-                </a>
-            </nav>
-        </div>
-    </header>
+    <?php include 'includes/navbar.php'; ?>
+    
+    <?php
+    $is_logged_in = isset($_SESSION['user_id']);
+    ?>
 
 
     <section class="hero-section">
@@ -67,13 +53,23 @@
 
                 <div class="hero-buttons">
 
-                    <a href="upload-item.php" class="primary-btn">
-                        Report Lost Item
-                    </a>
+                    <?php if ($is_logged_in): ?>
+                        <a href="upload-item.php?type=lost" class="primary-btn">
+                            Report Lost Item
+                        </a>
 
-                    <a href="upload-item.php" class="secondary-btn">
-                        Report Found Item
-                    </a>
+                        <a href="upload-item.php?type=found" class="secondary-btn">
+                            Report Found Item
+                        </a>
+                    <?php else: ?>
+                        <a href="login.php" class="primary-btn">
+                            Login to Report Items
+                        </a>
+
+                        <a href="register.php" class="secondary-btn">
+                            Create Account
+                        </a>
+                    <?php endif; ?>
 
                 </div>
 
@@ -119,67 +115,110 @@
 
         <div class="section-title">
 
-            <h2>Latest Items</h2>
+            <div>
 
-            <p>Recently reported items across campus</p>
+                <h2>Latest Items</h2>
+
+                <p>
+                    Recently reported items across campus
+                </p>
+
+            </div>
+
+            <a href="all-items.php" class="view-all-btn">
+                View All
+            </a>
 
         </div>
 
         <div class="item-grid">
 
-            <!-- CARD 1 -->
+            <?php
+
+            if($result->num_rows > 0)
+            {
+                while($row = $result->fetch_assoc())
+                {
+
+                    $badgeClass = "";
+
+                    if($row['item_type'] == "Lost")
+                    {
+                        $badgeClass = "lost-badge";
+                    }
+                    else
+                    {
+                        $badgeClass = "found-badge";
+                    }
+
+            ?>
+
+            <!-- CARD -->
 
             <div class="item-card">
 
                 <div class="item-image">
 
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPoJETwIduQCgT8QubF7PvVsuxr1Td2b4iezP9fBY0RfJvlMi1MDjZg22Lvo_zNlxTjvRe5vSiWLR00Fs52RBS_jp7DgRUeYN6m7N5wvbP6kha-7GhtJ3GHgR9in4zZLJvg0NFJtUYq641DyQeJNmSNlKm9ud-gwxNvOufk6rS7I1rIa9F4Df1dbtJUXopoTqlx9dvSs2YlODOerc85oANFYN1go5a8XKTzT7PAvl6uUQWe9gxE0TMIe26ULPuvdZqasgmmY0PQyPw"
-                        alt="Keys" />
+                    <img 
+                        src="<?php echo $row['image']; ?>"
+                        alt="Item Image"
+                    />
 
-                    <span class="lost-badge">
-                        Lost
+                    <span class="<?php echo $badgeClass; ?>">
+
+                        <?php echo $row['item_type']; ?>
+
                     </span>
 
                 </div>
 
                 <div class="item-content">
 
-                    <h3>House Keys</h3>
+                    <h3>
 
-                    <p>Location: Central Library</p>
+                        <?php echo $row['item_name']; ?>
 
-                    <p>2 hours ago</p>
+                    </h3>
 
-                </div>
+                    <p>
 
-            </div>
+                        Location: <?php echo $row['location']; ?>
 
-            <!-- CARD 2 -->
+                    </p>
 
-            <div class="item-card">
+                    <p>
 
-                <div class="item-image">
+                        Category: <?php echo $row['category']; ?>
 
-                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnquWJBfB81uo_BybuOPfuVKZh-5gC8tSWReF7aoJ-BgcGo-z4MofEyAkmL-QLbVteS_R33WU5ULZ6_xVfbZ-bbYhAQ6yXE1KXwEJoSmwPJIkQbwYZe7jvKgRxxyoQKD6-WAHz414lXY_YzovqlVIX-0uTnyZkE238kzALOfxaTXcWXSwmvW0vboPtIbOqaVz8beK2bAxxJVAlEKm7wPXuEYE9U0A-H8px9BFlfRKrN4Ues2d7ZxnpPbP1bqihrY4KcSMI_3BnqoEg"
-                        alt="Bottle" />
+                    </p>
 
-                    <span class="found-badge">
-                        Found
-                    </span>
+                    <div class="item-actions">
+                        <?php if($row['item_type'] == "Lost"): ?>
+                            <a href="report-found.php?item_id=<?php echo $row['item_id']; ?>" class="action-btn report-found-btn">
+                                Report Found
+                            </a>
+                        <?php else: ?>
+                            <a href="claim-item.php?item_id=<?php echo $row['item_id']; ?>">
 
-                </div>
-
-                <div class="item-content">
-
-                    <h3>Water Bottle</h3>
-
-                    <p>Location: Main Gym</p>
-
-                    <p>5 hours ago</p>
+                                Claim Item
+                            </a>
+                        <?php endif; ?>
+                    </div>
 
                 </div>
 
             </div>
+
+            <?php
+
+                }
+            }
+            else
+            {
+                echo "<p>No Items Found</p>";
+            }
+
+            ?>
 
         </div>
 

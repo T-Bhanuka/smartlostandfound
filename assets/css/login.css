@@ -156,3 +156,24 @@ body{
 
     font-weight:bold;
 }
+
+.message
+        {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success
+        {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error
+        {
+            background-color: #f8d7da;
+            color: #721c24;
+        }

@@ -98,6 +98,24 @@ body{
     resize:none;
 }
 
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled{
+    background-color:#f0f0f0;
+    cursor:not-allowed;
+    opacity:0.7;
+}
+
+.submit-btn:disabled{
+    background:#ccc;
+    cursor:not-allowed;
+    opacity:0.6;
+}
+
+.submit-btn:disabled:hover{
+    background:#ccc;
+}
+
 .submit-btn{
     width:100%;
 
@@ -118,4 +136,43 @@ body{
 
 .submit-btn:hover{
     background:#0056cc;
+}
+
+/* ALERT SECTION */
+
+.alert{
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.alert h2{
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.alert p{
+    margin-bottom:15px;
+    color:#555;
+    line-height:1.6;
+}
+
+.alert-warning{
+    background:#fff3cd;
+    border:1px solid #ffc107;
+    color:#856404;
+}
+
+.alert-warning h2{
+    color:#856404;
+}
+
+.alert-link{
+    color:#0d6efd;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.alert-link:hover{
+    text-decoration:underline;
 }

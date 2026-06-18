@@ -1,0 +1,53 @@
+body
+{
+    font-family: Arial;
+    background: #f5f7fb;
+    margin: 0;
+}
+
+.claim-page
+{
+    padding: 50px;
+}
+
+.claim-container
+{
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.item-image
+{
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.item-details,
+.finder-details,
+.claim-form
+{
+    margin-bottom: 35px;
+}
+
+.whatsapp-btn
+{
+    display: inline-block;
+    margin-top: 15px;
+    background: #25D366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.whatsapp-btn:hover
+{
+    background: #1ebe5d;
+}
