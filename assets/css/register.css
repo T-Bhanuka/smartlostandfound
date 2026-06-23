@@ -6,26 +6,10 @@
 
 body{
     font-family:Arial, sans-serif;
-    background:#f5f7fb;
+    background:#ffffff;
 }
 
-/* NAVBAR */
 
-.navbar{
-    background:white;
-    border-bottom:1px solid #ddd;
-}
-
-.nav-container{
-    width:90%;
-    margin:auto;
-
-    height:70px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
 
 .logo{
     color:#0d6efd;
@@ -108,12 +92,12 @@ body{
 
 /* BUTTON */
 
-.register-btn{
+.register-btnnn{
     width:100%;
 
     padding:15px;
 
-    background:#0d6efd;
+    background:#0d6efd  ;
 
     color:white;
 
@@ -144,4 +128,53 @@ body{
     text-decoration:none;
 
     font-weight:bold;
+}
+
+/* GOOGLE AUTHENTICATION */
+
+.google-divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: #999;
+    font-size: 14px;
+}
+
+.google-divider::before,
+.google-divider::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid #ddd;
+}
+
+.google-divider span {
+    margin: 0 15px;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.google-btn:hover {
+    background: #f7f7f7;
+    border-color: #999;
 }
