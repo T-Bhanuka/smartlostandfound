@@ -3,6 +3,7 @@
 session_start();
 
 include 'includes/connection.php';
+include 'includes/google-config.php';
 
 $message = "";
 
@@ -258,12 +259,21 @@ if (isset($_POST['register'])) {
             <button
                 type="submit"
                 name="register"
-                class="register-btn"
+                class="register-btnnn"
             >
 
                 Register
 
             </button>
+
+            <div class="google-divider">
+                <span>or</span>
+            </div>
+
+            <a href="<?php echo getGoogleLoginUrl(); ?>" class="google-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Sign in with Google
+            </a>
 
         </form>
 
