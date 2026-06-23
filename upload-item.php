@@ -8,13 +8,7 @@ if (!$is_logged_in) {
     exit();
 }
 
-// Handle form submission
-$conn = new mysqli("localhost", "root", "", "smartlostfound", 3307);
-
-if($conn->connect_error) {
-    die("Connection Failed : " . $conn->connect_error);
-}
-
+include 'includes/connection.php';
 $message = "";
 $messageType = "";
 

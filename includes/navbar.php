@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 $is_logged_in = isset($_SESSION['user_id']);
 $full_name = $_SESSION['full_name'] ?? '';
