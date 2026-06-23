@@ -43,10 +43,11 @@ CREATE TABLE `items` (
 --
 -- Dumping data for table `items`
 --
-
+ALTER TABLE items
+ADD COLUMN status ENUM('Active','Claimed') NOT NULL DEFAULT 'Active';
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
-INSERT INTO `items` VALUES (1,3,'iphone 12 ','Phone','A7 301','2026-06-13','its a charcoal color phone ','Found','uploads/6a39485b0dea8.png','Pending','2026-06-22 14:36:11'),(2,3,'bag','Bag','base canteen','2026-06-16','found a black bag ','Lost','uploads/6a394b838f931.jpg','Pending','2026-06-22 14:49:39');
+INSERT INTO `items` VALUES (1,3,'iphone 12 ','Phone','A7 301','2026-06-13','its a charcoal color phone ','Found','uploads/6a39485b0dea8.png','Active','2026-06-22 14:36:11'),(2,3,'bag','Bag','base canteen','2026-06-16','found a black bag ','Lost','uploads/6a394b838f931.jpg','Active','2026-06-22 14:49:39');
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
