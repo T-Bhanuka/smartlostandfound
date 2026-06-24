@@ -3,24 +3,24 @@ include 'includes/connection.php';
 
 // 2. Get Total Users Count
 $sql_users = "SELECT COUNT(*) as total_users FROM users";
-$result_users = $conn->query($sql_users);
-$row_users = $result_users->fetch_assoc();
+$result_users = mysqli_query($conn, $sql_users);
+$row_users = mysqli_fetch_assoc($result_users);
 $total_users_count = $row_users['total_users'];
 
 // 3. Get Total Items Count
 $sql_items = "SELECT COUNT(*) as total_items FROM items";
-$result_items = $conn->query($sql_items);
-$row_items = $result_items->fetch_assoc();
+$result_items = mysqli_query($conn, $sql_items);
+$row_items = mysqli_fetch_assoc($result_items);
 $total_items_count = $row_items['total_items'];
 
 // 4. Get Pending Claims Count (Where claim_status is 'Pending')
 $sql_claims = "SELECT COUNT(*) as pending_claims FROM claims WHERE claim_status = 'Pending'";
-$result_claims = $conn->query($sql_claims);
-$row_claims = $result_claims->fetch_assoc();
+$result_claims = mysqli_query($conn, $sql_claims);
+$row_claims = mysqli_fetch_assoc($result_claims);
 $pending_claims_count = $row_claims['pending_claims'];
 
 // Close the connection
-$conn->close();
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Smart Lost & Found</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/admin_dashboard.css">
@@ -55,7 +55,7 @@ $conn->close();
             <span class="material-symbols-outlined">inventory_2</span>
             Items
         </a>
-        <a href="#" class="nav-item">
+        <a href="admin_claims.php" class="nav-item">
             <span class="material-symbols-outlined">assignment</span>
             Claims
         </a>
@@ -65,7 +65,18 @@ $conn->close();
         
         <div class="header">
             <h1>Overview</h1>
-            <a href="login.php" class="logout-btn">Logout</a>
+            <a href="login.php" class="logout-btn">
+                <span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+        </div>
+
+        <div class="welcome-banner">
+            <div class="welcome-text">
+                <h2>Welcome back, Admin! 👋</h2>
+                <p>System monitoring is active. Here is a quick snapshot of the Smart Lost & Found platform's activity and current pending workloads.</p>
+            </div>
+            <div class="welcome-shapes"></div>
         </div>
 
         <div class="dashboard-cards">
